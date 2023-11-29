@@ -1,0 +1,25 @@
+[remap]
+
+importer="Aseprite AnimatedSprite2D Import"
+type="PackedScene"
+uid="uid://dnnn7jhevkglo"
+path="res://.godot/imported/Galinho.aseprite-a377bb448a6f53e4e81023bf488b7dbb.scn"
+
+[deps]
+
+source_file="res://Assets/Aseprite/Galinho.aseprite"
+dest_files=["res://.godot/imported/Galinho.aseprite-a377bb448a6f53e4e81023bf488b7dbb.scn"]
+
+[params]
+
+spritesheet/layout=0
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""

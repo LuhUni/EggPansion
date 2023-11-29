@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckyv7f38yo5sv"]
+
+[ext_resource type="Script" path="res://Scripts/Key.gd" id="1_uvft0"]
+[ext_resource type="Texture2D" uid="uid://cyq76ad4p7s2m" path="res://Assets/Aseprite/Key.aseprite" id="2_xc4cs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iesji"]
+size = Vector2(22, 12)
+
+[sub_resource type="Animation" id="Animation_3p4q6"]
+resource_name = "Idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tt6ki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_roe5b"]
+_data = {
+"Idle": SubResource("Animation_3p4q6"),
+"RESET": SubResource("Animation_tt6ki")
+}
+
+[node name="Key" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_uvft0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xc4cs")
+region_rect = Rect2(8, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iesji")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_roe5b")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

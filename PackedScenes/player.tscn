@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr2fkii0l0yn7"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ub1ff"]
+[ext_resource type="AudioStream" uid="uid://skuafbk1xtdp" path="res://Assets/SFX/Jump.wav" id="3_cpcj7"]
+[ext_resource type="PackedScene" uid="uid://dnnn7jhevkglo" path="res://Assets/Aseprite/Galinho.aseprite" id="3_pc0na"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybijg"]
+size = Vector2(13.3393, 29.0559)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.0880912, 0.0880912)
+collision_mask = 2
+safe_margin = 0.02
+script = ExtResource("1_ub1ff")
+
+[node name="Sprite" parent="." instance=ExtResource("3_pc0na")]
+position = Vector2(0, -15.9636)
+animation = &"Run"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.34153, -14.5279)
+shape = SubResource("RectangleShape2D_ybijg")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -11.0633)
+scale = Vector2(1.37326, 1.37326)
+target_position = Vector2(7.23308, -0.145588)
+collision_mask = 2
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -11.0632)
+scale = Vector2(1.37258, 1.37258)
+target_position = Vector2(-8.20582, -0.0164452)
+collision_mask = 2
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cpcj7")
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
